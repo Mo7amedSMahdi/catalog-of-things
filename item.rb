@@ -1,16 +1,20 @@
 class Item
-  def initialize(genre:, author:, source:, label:, publish_date:, archived:)
-    @id = Random.rand(1..1_000_000)
-    @genre = genre
-    @author = author
-    @source = source
-    @label = label
+  attr_reader :id
+  attr_accessor :genre, :author, :source, :label, :publish_date, :archived
+
+  def initialize(publish_date:, archived: false, id:)
+    @id = id || Random.rand(1..1_000_000)
     @publish_date = publish_date
     @archived = archived
   end
 
   def move_to_archive
     retrun true if can_be_archived?
+  end
+
+  def add_genre(genre)
+    @genre = genre
+    gener.items.push(self) unless genre.items.include?(self)
   end
 
   private
