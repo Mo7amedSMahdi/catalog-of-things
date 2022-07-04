@@ -15,10 +15,10 @@ class MusicAlbumManager
     date = Date.parse(gets.chomp)
     puts "Is it on spotify? [Y,N]"
     on_spotify = gets.chomp.downcase
-    on_spotify = on_spotify == "y" ? true : false
+    on_spotify = on_spotify == "y"
     puts "Is it archived? [Y,N]"
     archived = gets.chomp.downcase
-    archived = archived == "y" ? true : false
+    archived = archived == "y"
     music_album = MusicAlbum.new(publish_date: date, on_spotify: on_spotify)
     if archived
       music_album.move_to_archive
@@ -59,7 +59,8 @@ class MusicAlbumManager
     puts "###### Listing Music Albums ######"
     puts "##################################"
     @albums_list.each_with_index do |album, index|
-      puts "#{index + 1}) Publish date: #{album.publish_date} - Genre: #{album.genre.name} - Archived: #{album.archived} - on spotify: #{album.on_spotify}"
+      print "#{index + 1}) Publish date: #{album.publish_date} - Genre: #{album.genre.name} "
+      print "- Archived: #{album.archived} - on spotify: #{album.on_spotify}\n"
     end
   end
 end
