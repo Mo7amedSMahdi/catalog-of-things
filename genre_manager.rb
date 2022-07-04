@@ -16,6 +16,9 @@ class GenreManager
     name = gets.chomp
     genre = Genre.new(name: name)
     add_genre(genre)
+    puts "*****************************"
+    puts "****** Genre created! *******"
+    puts "*****************************"
   end
 
   def get_genre_from_index(index)

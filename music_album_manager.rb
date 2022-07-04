@@ -26,24 +26,24 @@ class MusicAlbumManager
     end
     puts "1) Create a new genre to use \n2) List and use an existing genre\n3) Create without genre"
     option = gets.chomp
-    genre = prompt_genre(option, genre_handler)
+    genre = prompt_genre(option, genre_manager)
     music_album.add_genre(genre)
-    genre_handler.add_genre(genre) unless genre_handler.genres.include?(genre)
-    @music_albums.push(music_album)
+    genre_manager.add_genre(genre) unless genre_manager.genres.include?(genre)
+    @albums_list.push(music_album)
     puts "Music Album created!"
     puts "************************************"
     puts "******* Music Album created! *******"
     puts "************************************"
   end
 
-  def prompt_genre(option, genre_handler)
+  def prompt_genre(option, genre_manager)
     case option
     when "1"
-      genre_handler.create_genre
+      genre_manager.create_genre
     when "2"
-      genre_handler.list_genre_with_index
+      genre_manager.list_genre_with_index
       genre_index = gets.chomp.to_i
-      genre = genre_handler.get_genre_from_index(genre_index)
+      genre = genre_manager.get_genre_from_index(genre_index)
       puts "No genre found with index #{genre_index}" if genre.nil?
       genre
     when "3"
