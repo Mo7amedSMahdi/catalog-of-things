@@ -4,12 +4,12 @@ class Item
 
   def initialize(publish_date:, id:, archived: false)
     @id = id || Random.rand(1..1_000_000)
-    @publish_date = publish_date
+    @publish_date = Date.parse(publish_date)
     @archived = archived
   end
 
   def move_to_archive
-    retrun true if can_be_archived?
+    @archived = true if can_be_archived?
   end
 
   def add_genre(genre)
@@ -20,6 +20,6 @@ class Item
   private
 
   def can_be_archived?
-    @publish_date > 10
+    (Date.today.year - @publish_date.year) > 10
   end
 end

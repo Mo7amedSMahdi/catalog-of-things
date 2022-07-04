@@ -17,4 +17,8 @@ class GenreManager
     genre = Genre.new(name: name)
     add_genre(genre)
   end
+
+  def get_genre_from_index(index)
+    @geners_list[index]
+  end
 end
