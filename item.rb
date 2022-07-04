@@ -1,3 +1,5 @@
+require 'date'
+
 class Item
   attr_reader :id
   attr_accessor :genre, :author, :source, :label, :publish_date, :archived
@@ -14,7 +16,7 @@ class Item
 
   def add_genre(genre)
     @genre = genre
-    gener.items.push(self) unless genre.items.include?(self)
+    genre&.items&.push(self)
   end
 
   private

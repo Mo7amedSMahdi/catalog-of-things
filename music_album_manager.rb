@@ -1,3 +1,6 @@
+require './music_album'
+require './genre_manager'
+
 class MusicAlbumManager
   def initialize
     @albums_list = []
@@ -12,7 +15,7 @@ class MusicAlbumManager
     puts '###### Creating Music Album ######'
     puts '##################################'
     puts 'Enter publish date (YYYY-MM-DD):'
-    date = Date.parse(gets.chomp)
+    date = gets.chomp
     puts 'Is it on spotify? [Y,N]'
     on_spotify = gets.chomp.downcase
     on_spotify = on_spotify == 'y'
@@ -28,7 +31,7 @@ class MusicAlbumManager
     option = gets.chomp
     genre = prompt_genre(option, genre_manager)
     music_album.add_genre(genre)
-    genre_manager.add_genre(genre) unless genre_manager.genres.include?(genre)
+    genre_manager.add_genre(genre) unless genre_manager.geners_list.include?(genre)
     @albums_list.push(music_album)
     puts 'Music Album created!'
     puts '************************************'

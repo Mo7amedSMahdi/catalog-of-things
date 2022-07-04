@@ -1,3 +1,6 @@
+require './genre'
+require 'pry'
+
 class GenreManager
   attr_reader :geners_list
 
@@ -16,10 +19,25 @@ class GenreManager
     puts 'Enter genre name:'
     name = gets.chomp
     genre = Genre.new(name: name)
-    add_genre(genre)
-    puts '*****************************'
-    puts '****** Genre created! *******'
-    puts '*****************************'
+    check_if_genre_exists?(name) ? get_genre_from_name(name) : genre
+  end
+
+  def check_if_genre_exists?(name)
+    if list_of_genre_names.include?(name.downcase)
+      puts 'Genre is already in the list of genres'
+      true
+    else
+      puts '*************************************'
+      puts "****** Genre #{name} created! *******"
+      puts '*************************************'
+      false
+    end
+  end
+
+  def list_of_genre_names
+    arr = []
+    @geners_list.each { |e| arr.push(e.name.downcase) }
+    arr
   end
 
   def get_genre_from_index(index)
