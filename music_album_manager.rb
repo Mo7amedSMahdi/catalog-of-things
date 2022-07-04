@@ -8,17 +8,17 @@ class MusicAlbumManager
   end
 
   def create_music_album(genre_manager)
-    puts "##################################"
-    puts "###### Creating Music Album ######"
-    puts "##################################"
-    puts "Enter publish date (YYYY-MM-DD):"
+    puts '##################################'
+    puts '###### Creating Music Album ######'
+    puts '##################################'
+    puts 'Enter publish date (YYYY-MM-DD):'
     date = Date.parse(gets.chomp)
-    puts "Is it on spotify? [Y,N]"
+    puts 'Is it on spotify? [Y,N]'
     on_spotify = gets.chomp.downcase
-    on_spotify = on_spotify == "y"
-    puts "Is it archived? [Y,N]"
+    on_spotify = on_spotify == 'y'
+    puts 'Is it archived? [Y,N]'
     archived = gets.chomp.downcase
-    archived = archived == "y"
+    archived = archived == 'y'
     music_album = MusicAlbum.new(publish_date: date, on_spotify: on_spotify)
     if archived
       music_album.move_to_archive
@@ -30,34 +30,34 @@ class MusicAlbumManager
     music_album.add_genre(genre)
     genre_manager.add_genre(genre) unless genre_manager.genres.include?(genre)
     @albums_list.push(music_album)
-    puts "Music Album created!"
-    puts "************************************"
-    puts "******* Music Album created! *******"
-    puts "************************************"
+    puts 'Music Album created!'
+    puts '************************************'
+    puts '******* Music Album created! *******'
+    puts '************************************'
   end
 
   def prompt_genre(option, genre_manager)
     case option
-    when "1"
+    when '1'
       genre_manager.create_genre
-    when "2"
+    when '2'
       genre_manager.list_genre_with_index
       genre_index = gets.chomp.to_i
       genre = genre_manager.get_genre_from_index(genre_index)
       puts "No genre found with index #{genre_index}" if genre.nil?
       genre
-    when "3"
-      puts "Creating Music Album without genre"
+    when '3'
+      puts 'Creating Music Album without genre'
       nil
     else
-      puts "Invalid option, aborting genre creation"
+      puts 'Invalid option, aborting genre creation'
     end
   end
 
   def list_music_albums_with_index
-    puts "##################################"
-    puts "###### Listing Music Albums ######"
-    puts "##################################"
+    puts '##################################'
+    puts '###### Listing Music Albums ######'
+    puts '##################################'
     @albums_list.each_with_index do |album, index|
       print "#{index + 1}) Publish date: #{album.publish_date} - Genre: #{album.genre.name} "
       print "- Archived: #{album.archived} - on spotify: #{album.on_spotify}\n"
