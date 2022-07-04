@@ -53,4 +53,13 @@ class MusicAlbumManager
       puts "Invalid option, aborting genre creation"
     end
   end
+
+  def list_music_albums_with_index
+    puts "##################################"
+    puts "###### Listing Music Albums ######"
+    puts "##################################"
+    @albums_list.each_with_index do |album, index|
+      puts "#{index + 1}) Publish date: #{album.publish_date} - Genre: #{album.genre.name} - Archived: #{album.archived} - on spotify: #{album.on_spotify}"
+    end
+  end
 end

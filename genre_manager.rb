@@ -24,4 +24,11 @@ class GenreManager
   def get_genre_from_index(index)
     @geners_list[index]
   end
+
+  def list_genre_with_index
+    puts "############################"
+    puts "###### Listing Genres ######"
+    puts "############################"
+    @geners_list.each_with_index { |genre, index| puts "#{index + 1}) Name: #{genre.name}" }
+  end
 end
