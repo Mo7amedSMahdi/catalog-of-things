@@ -23,9 +23,8 @@ describe 'Genre class tests' do
       expect(@genre.items.length).to eq(1)
     end
 
-     it 'check if id is not nil' do
+    it 'check if id is not nil' do
       expect(@genre.id.nil?).to be_falsey
     end
   end
-
 end
