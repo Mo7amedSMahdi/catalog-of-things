@@ -1,5 +1,11 @@
+require './music_album_manager'
+require './genre_manager'
+
 class App
   def initialize
+    @music_manager = MusicAlbumManager.new
+    @genre_manager = GenreManager.new
+
     @options = {
       '0' => 'Save and Exit',
       '1' => 'List all books',
@@ -40,13 +46,13 @@ class App
     when '1'
       'Listing all books'
     when '2'
-      'Listing all music albums'
+      @music_manager.list_music_albums_with_index
     when '3'
       'Listing all movies'
     when '4'
       'Listing of games'
     when '5'
-      'Listing all genres'
+      @genre_manager.list_genre_with_index
     when '6'
       'Listing all labels'
     when '7'
@@ -56,7 +62,7 @@ class App
     when '9'
       'Adding a book'
     when '10'
-      'Adding a music album'
+      @music_manager.create_music_album(@genre_manager)
     when '11'
       'Adding a movie'
     when '12'
