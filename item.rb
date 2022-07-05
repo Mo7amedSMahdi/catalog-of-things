@@ -1,5 +1,4 @@
 require 'date'
-require 'pry'
 
 class Item
   attr_reader :id

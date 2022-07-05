@@ -1,7 +1,6 @@
 require './music_album'
 require './genre_manager'
 require 'json'
-require 'pry'
 
 class MusicAlbumManager
   def initialize
@@ -67,7 +66,6 @@ class MusicAlbumManager
     genre && music_album.add_genre(genre)
     genre_manager.add_genre(genre) unless genre_manager.genres_list.include?(genre)
     @albums_list.push(music_album)
-    binding.pry
     puts 'Music Album created!'
     puts '************************************'
     puts '******* Music Album created! *******'

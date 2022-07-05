@@ -1,6 +1,5 @@
 require 'json'
 require './genre'
-require 'pry'
 
 class GenreManager
   attr_reader :genres_list
@@ -18,7 +17,6 @@ class GenreManager
   def save
     json_array = []
     json_array << @genres_list.map { |genre| genre_to_json(genre) } unless @genres_list.empty?
-    binding.pry
     File.write('data/genres.json', "[#{json_array.join(',')}]")
   end
 
@@ -30,8 +28,6 @@ class GenreManager
       genre = Genre.new(id: hash['id'], name: hash['name'])
       add_genre(genre)
     end
-
-    binding.pry
   end
 
   def read_file
