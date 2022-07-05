@@ -19,6 +19,10 @@ class Item
     genre&.items&.push(self)
   end
 
+  def add_label(label)
+    @label = label
+    label&.items&.push(self)
+
   private
 
   def can_be_archived?
