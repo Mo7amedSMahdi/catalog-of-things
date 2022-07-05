@@ -1,5 +1,6 @@
 require './music_album'
 require './genre_manager'
+require 'json'
 
 class MusicAlbumManager
   def initialize
@@ -8,6 +9,38 @@ class MusicAlbumManager
 
   def add_music_album(album)
     @albums_list.push(album) unless @albums_list.include?(album)
+  end
+
+  def save
+    json_array = []
+    json_array << @albums_list.map { |album| music_to_json(album) } unless @albums_list.empty?
+    File.write('data/music_album.json', "[#{json_array.join(',')}]")
+  end
+
+  def load(genre_manager)
+    array_hash = read_file
+    return [] if array_hash.empty?
+
+    array_hash.each do |hash|
+      album = MusicAlbum.new(id: hash['id'], publish_date: hash['publish_date'], on_spotify: hash['on_spotify'],
+                             archived: hash['archived'])
+      genre = genre_manager.get_genre_from_id(hash['genre'])
+      album.add_genre(genre)
+      @albums_list.push(album)
+    end
+  end
+
+  def read_file
+    if File.exist?('data/music_album.json')
+      data = File.read('data/music_album.json')
+      return JSON.parse(data)
+    end
+    []
+  end
+
+  def music_to_json(album)
+    { id: album.id, publish_date: album.publish_date, genre: album.genre&.id, on_spotify: album.on_spotify,
+      archived: album.archived }.to_json
   end
 
   def create_music_album(genre_manager)
@@ -30,8 +63,8 @@ class MusicAlbumManager
     puts "1) Create a new genre to use \n2) List and use an existing genre\n3) Create without genre"
     option = gets.chomp
     genre = prompt_genre(option, genre_manager)
-    music_album.add_genre(genre)
-    genre_manager.add_genre(genre) unless genre_manager.geners_list.include?(genre)
+    genre && music_album.add_genre(genre)
+    genre_manager.add_genre(genre) unless genre_manager.genres_list.include?(genre)
     @albums_list.push(music_album)
     puts 'Music Album created!'
     puts '************************************'
@@ -46,7 +79,7 @@ class MusicAlbumManager
     when '2'
       genre_manager.list_genre_with_index
       genre_index = gets.chomp.to_i
-      genre = genre_manager.get_genre_from_index(genre_index)
+      genre = genre_manager.get_genre_from_index(genre_index - 1)
       puts "No genre found with index #{genre_index}" if genre.nil?
       genre
     when '3'
@@ -62,7 +95,7 @@ class MusicAlbumManager
     puts '###### Listing Music Albums ######'
     puts '##################################'
     @albums_list.each_with_index do |album, index|
-      print "#{index + 1}) Publish date: #{album.publish_date} - Genre: #{album.genre.name} "
+      print "#{index + 1}) Publish date: #{album.publish_date} - Genre: #{album.genre&.name} "
       print "- Archived: #{album.archived} - on spotify: #{album.on_spotify}\n"
     end
   end
