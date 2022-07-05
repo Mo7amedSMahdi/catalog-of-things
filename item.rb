@@ -22,6 +22,7 @@ class Item
   def add_label(label)
     @label = label
     label&.items&.push(self)
+  end
 
   private
 
