@@ -5,7 +5,8 @@ class App
   def initialize
     @music_manager = MusicAlbumManager.new
     @genre_manager = GenreManager.new
-
+    @genre_manager.load
+    @music_manager.load(@genre_manager)
     @options = {
       '0' => 'Save and Exit',
       '1' => 'List all books',
@@ -73,7 +74,11 @@ class App
   end
 
   def save_and_exit
-    'Saving ...'
+    puts '##############################'
+    puts '###### Saving Data... #######'
+    puts '#############################'
+    @music_manager.save
+    @genre_manager.save
   end
 end
 
