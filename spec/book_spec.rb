@@ -1,5 +1,4 @@
 require './book'
-require './label'
 
 describe 'Book' do
   before :each do

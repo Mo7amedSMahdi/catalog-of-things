@@ -15,6 +15,7 @@ The data will be stored in JSON files but we also prepare a database with tables
 - GitHub
 - VSCode
 - Rubocop
+    @label = Label.new(title: 'mitch', color: "red")
 
 ## Getting Started
 
