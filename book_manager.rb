@@ -96,7 +96,8 @@ class BookManager
     puts '###### Listing Book ######'
     puts '##################################'
     @books.each_with_index do |book, index|
-      puts "#{index + 1}.id: #{book.id} publisher: #{book.publisher} cover_state: #{book.cover_state} publish date: #{book.publish_date} archived: #{book.archived}"
+      puts "#{index + 1}.id: #{book.id} publisher: #{book.publisher}
+        cover_state: #{book.cover_state} publish date: #{book.publish_date} archived: #{book.archived}"
     end
   end
 end
