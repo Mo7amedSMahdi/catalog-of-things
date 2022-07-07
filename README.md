@@ -53,8 +53,8 @@ run the program functions
 👤 **Yannick Zahinda**
 
 - GitHub: [YannickZahinda](https://github.com/YannickZahinda)
-- Twitter: [devMo7amed](https://twitter.com/ZahindaY)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/yannick-mulikuza/)
+- Twitter: [@ZahindaY](https://twitter.com/ZahindaY)
+- LinkedIn: [Yannick MULIKUZA](https://linkedin.com/in/linkedinhandle)
 
 👤 **Eshetu Melaku**
 
