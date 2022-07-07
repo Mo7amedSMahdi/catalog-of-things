@@ -13,6 +13,18 @@ CREATE TABLE Item(
     FOREIGN KEY (label_id) REFERENCES label(id)
     )
 
+
+CREATE TABLE Label (
+  id SERIAL PRIMARY KEY,
+  title TEXT,
+  color TEXT
+)
+
+CREATE TABLE Book (
+  publisher TEXT,
+  cover_state TEXT
+) INHERITS (Item)
+
 CREATE TABLE Genre(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255)
