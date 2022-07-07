@@ -52,7 +52,7 @@ class LabelManager
     title = gets.chomp
     puts 'Enter label color:'
     color = gets.chomp
-    label = Label.new(title, color)
+    label = Label.new(title: title, color: color)
     check_if_label_exists?(title) ? get_label_from_title(title) : label
   end
 
