@@ -1,8 +1,14 @@
 require './music_album_manager'
 require './genre_manager'
+require './book_manager'
+require './label_manager'
 
 class App
   def initialize
+    @books = BookManager.new
+    @labels = LabelManager.new
+    @labels.load_labels
+    @books.load_books(@labels)
     @music_manager = MusicAlbumManager.new
     @genre_manager = GenreManager.new
     @genre_manager.load
@@ -45,7 +51,7 @@ class App
   def menu_choice(option)
     case option
     when '1'
-      'Listing all books'
+      @books.list_book_with_index
     when '2'
       @music_manager.list_music_albums_with_index
     when '3'
@@ -55,13 +61,13 @@ class App
     when '5'
       @genre_manager.list_genre_with_index
     when '6'
-      'Listing all labels'
+      @labels.list_label_with_index
     when '7'
       'Listing all authors'
     when '8'
       'Listing all sources'
     when '9'
-      'Adding a book'
+      @books.create_book(@labels)
     when '10'
       @music_manager.create_music_album(@genre_manager)
     when '11'
@@ -79,6 +85,8 @@ class App
     puts '#############################'
     @music_manager.save
     @genre_manager.save
+    @books.save_books
+    @labels.save_labels
   end
 end
 
