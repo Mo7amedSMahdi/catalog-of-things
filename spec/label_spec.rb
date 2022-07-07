@@ -2,7 +2,7 @@ require './label'
 
 describe 'Book' do
   before :each do
-    @label = Label.new('mitch', 'red', items: [])
+    @label = Label.new('mitch', 'red')
   end
 
   context 'initialize' do
