@@ -49,3 +49,4 @@ class GameManager
     }.to_json
   end
 end
+
