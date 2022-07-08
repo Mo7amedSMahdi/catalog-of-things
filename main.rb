@@ -1,6 +1,9 @@
 require './music_album_manager'
 require './genre_manager'
-require './game'
+require './book_manager'
+require './label_manager'
+require './author_manager'
+require './game_manager'
 
 class App
   def initialize
@@ -68,7 +71,7 @@ class App
     when '11'
       'Adding a movie'
     when '12'
-      'Adding game'
+      @game_manager.add_game(@author_manager)
     else
       puts 'Not a valid option'
     end
