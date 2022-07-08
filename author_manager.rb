@@ -31,6 +31,6 @@ class AuthorManager
   end
 
   def load
-    JSON.parse(File.read('data/author.json')) if File.exist?('data/author.json')
+    @authors = JSON.parse(File.read('data/author.json')) if File.exist?('data/author.json')
   end
 end
