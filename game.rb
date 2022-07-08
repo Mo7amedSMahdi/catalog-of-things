@@ -14,21 +14,6 @@ class Game < Item
   end
 
   private :can_be_archived?
-
-  def to_s
-    "[GAME] Multiplayer: #{multiplayer}, Last played at: #{@last_played_at}"
-  end
-
-  def to_json(*args)
-    {
-      JSON.create_id => self.class.name,
-      'name' => @name,
-      'id' => @id,
-      'multiplayer' => @multiplayer,
-      'publish_date' => @publish_date,
-      'last_played_at' => @last_played_at
-    }.to_json(*args)
-  end
 end
 
 def to_json(*args)

@@ -1,5 +1,6 @@
 require './music_album_manager'
 require './genre_manager'
+require './game'
 
 class App
   def initialize
@@ -67,7 +68,7 @@ class App
     when '11'
       'Adding a movie'
     when '12'
-      'Adding a game'
+      'Adding game'
     else
       puts 'Not a valid option'
     end
