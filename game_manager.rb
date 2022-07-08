@@ -3,9 +3,11 @@ require_relative 'author'
 require 'json'
 class GameManager
   attr_accessor :games
+
   def initialize
     @games = []
   end
+
   def add_game(author_manager)
     puts '#################################'
     puts '###### Creating a New Game #######'
@@ -26,17 +28,21 @@ class GameManager
     puts '****** Game  created! *******'
     puts '*****************************'
   end
+
   def store_games
     File.write('data/games.json', JSON.pretty_generate(@games), mode: 'w')
   end
+
   def list_games
     @games.each_with_index do |game, index|
       puts "#{index}) #{game.to_json}"
     end
   end
+
   def load
     @games = JSON.parse(File.read('data/games.json')) if File.exist?('data/games.json')
   end
+
   def to_json(*_args)
     {
       games: @games
