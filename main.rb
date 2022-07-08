@@ -4,13 +4,20 @@ require './book_manager'
 require './label_manager'
 require './author_manager'
 require './game_manager'
-
 class App
   def initialize
+    @books = BookManager.new
+    @labels = LabelManager.new
+    @labels.load_labels
+    @books.load_books(@labels)
     @music_manager = MusicAlbumManager.new
     @genre_manager = GenreManager.new
     @genre_manager.load
     @music_manager.load(@genre_manager)
+    @author_manager = AuthorManager.new
+    @author_manager.load
+    @game_manager = GameManager.new
+    @game_manager.load
     @options = {
       '0' => 'Save and Exit',
       '1' => 'List all books',
@@ -41,7 +48,6 @@ class App
         save_and_exit
         break
       end
-
       menu_choice option
     end
   end
@@ -49,23 +55,23 @@ class App
   def menu_choice(option)
     case option
     when '1'
-      'Listing all books'
+      @books.list_book_with_index
     when '2'
       @music_manager.list_music_albums_with_index
     when '3'
       'Listing all movies'
     when '4'
-      'Listing of games'
+      @game_manager.list_games
     when '5'
       @genre_manager.list_genre_with_index
     when '6'
-      'Listing all labels'
+      @labels.list_label_with_index
     when '7'
-      'Listing all authors'
+      @author_manager.list_authors
     when '8'
       'Listing all sources'
     when '9'
-      'Adding a book'
+      @books.create_book(@labels)
     when '10'
       @music_manager.create_music_album(@genre_manager)
     when '11'
@@ -83,8 +89,11 @@ class App
     puts '#############################'
     @music_manager.save
     @genre_manager.save
+    @books.save_books
+    @labels.save_labels
+    @author_manager.store_authors
+    @game_manager.store_games
   end
 end
-
 app = App.new
 app.run

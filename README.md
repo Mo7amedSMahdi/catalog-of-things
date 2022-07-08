@@ -3,7 +3,7 @@
 In this project, We create a console app that will help you to keep a record of different types of things you won: books, music albums, movies, and games. Everything will be based on the UML class diagram presented below.
 
 <p align="center">
-  <img src="./images/catalog_of_my_things.png" alt="C=UML class diagram for catalog of things" />
+  <img src="https://raw.githubusercontent.com/microverseinc/curriculum-ruby/main/group-capstone/images/catalog_of_my_things.png?token=GHSAT0AAAAAABWDURC5BJK53NTRAPCQRMTQYWHNDMQ" alt="C=UML class diagram for catalog of things" />
 </p>
 
 The data will be stored in JSON files but we also prepare a database with tables structure analogical to the program's class structure.
